@@ -18,6 +18,12 @@ function Home() {
       <Link legacyBehavior href='/product'>
         <a>Product</a>
       </Link>
+      <Link legacyBehavior href='/users'>
+        <a>Users</a>
+      </Link>
+      <Link legacyBehavior href='/posts'>
+        <a>Posts</a>
+      </Link>
       <button onClick={handleClick}>
         Place Order
       </button>
