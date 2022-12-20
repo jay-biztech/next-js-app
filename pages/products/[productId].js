@@ -17,35 +17,6 @@ function Product({ product }) {
 
 export default Product
 
-export async function getStaticPaths() {
-    const response = await fetch('http://localhost:4000/products')
-    const data = await response.json()
-
-    const paths = data.map(product => {
-        return {
-            params: {
-                productId: `${product.id}`
-            }
-        }
-    })
-
-
-    return {
-        paths: [
-            {
-                params: { productId: '1' },
-            },
-            {
-                params: { productId: '2' },
-            },
-            {
-                params: { productId: '3' },
-            },                                    
-        ],
-        fallback: true,
-    }
-}
-
 export async function getStaticProps(context) {
     const { params } = context 
     const response = await fetch(
@@ -63,5 +34,24 @@ export async function getStaticProps(context) {
         props: {
             product: data,
         },
+    }
+}
+
+export async function getStaticPaths() {
+    const response = await fetch('http://localhost:4000/products')
+    const data = await response.json()
+
+    const paths = data.map(product => {
+        return {
+            params: {
+                productId: `${product.id}`
+            }
+        }
+    })
+
+
+    return {
+        paths: [{ params: { productId: '1'} }],
+        fallback: true,
     }
 }
